@@ -2,6 +2,7 @@ package io.github.nfdeveloper.cv_builder.entities.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import io.github.nfdeveloper.cv_builder.entities.enums.Status;
 import jakarta.persistence.Column;
@@ -10,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -53,4 +55,7 @@ public class Curso implements Serializable{
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @ManyToMany(mappedBy = "curriculos")
+    private List<Curriculo> curriculos;
 }
