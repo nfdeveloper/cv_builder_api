@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import io.github.nfdeveloper.cv_builder.application.dtos.cursos.CursoCreateDTO;
 import io.github.nfdeveloper.cv_builder.entities.enums.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -56,6 +57,17 @@ public class Curso implements Serializable{
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @ManyToMany(mappedBy = "curriculos")
+    @ManyToMany(mappedBy = "cursos")
     private List<Curriculo> curriculos;
+
+    public Curso(CursoCreateDTO dto){
+        this.id = dto.getId();
+        this.titulo = dto.getTitulo();
+        this.instituicao = dto.getInstituicao();
+        this.cargaHoraria = dto.getCargaHoraria();
+        this.dtTermino = dto.getDtTermino();
+        this.descricao = dto.getDescricao();
+        this.tecnologias = dto.getTecnologias();
+        this.status = dto.getStatus();
+    }
 }

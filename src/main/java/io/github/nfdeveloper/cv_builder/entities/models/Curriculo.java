@@ -35,6 +35,12 @@ public class Curriculo implements Serializable{
     @Column(name = "nome", length = 80)
     private String nome;
 
+    @Column(name = "titulo", length = 80)
+    private String titulo;
+
+    @Column(name = "subtitulo", length = 80)
+    private String subTitulo;
+
     @Column(name = "dtCurriculo")
     private LocalDateTime dataCurriculo;
 
