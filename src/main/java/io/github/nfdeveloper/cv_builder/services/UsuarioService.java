@@ -3,6 +3,7 @@ package io.github.nfdeveloper.cv_builder.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import io.github.nfdeveloper.cv_builder.entities.enums.Role;
@@ -16,6 +17,8 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository repository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<Usuario> listar(){
         return repository.findAll();
@@ -23,6 +26,7 @@ public class UsuarioService {
 
     @Transactional
     public Usuario criar(Usuario usuario) {
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return repository.save(usuario);
     }
 

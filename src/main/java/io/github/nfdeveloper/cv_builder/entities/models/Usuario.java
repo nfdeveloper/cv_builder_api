@@ -43,7 +43,7 @@ public class Usuario implements Serializable{
 
     private String password;
 
-    private Role permissao;
+    private Role permissao = Role.USUARIO;
     
     private Status status;
 
