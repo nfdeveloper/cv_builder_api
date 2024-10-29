@@ -29,14 +29,16 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+    @Column(name = "nome", length = 120)
     private String nome;
 
+    @Column(name = "sobrenome", length = 80)
     private String sobrenome;
 
-    @Column(name = "cpf", unique = true)
+    @Column(name = "cpf", unique = true, length = 20)
     private String cpf;
 
-    @Column(name = "username", unique = true)
+    @Column(name = "username", unique = true, length = 80)
     private String username;
 
     private String password;
