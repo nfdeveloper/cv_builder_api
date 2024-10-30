@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.nfdeveloper.cv_builder.entities.models.Experiencia;
+import io.github.nfdeveloper.cv_builder.application.dtos.experiencias.ExperienciaCreateDTO;
+import io.github.nfdeveloper.cv_builder.application.dtos.experiencias.ExperienciaResponseDTO;
 import io.github.nfdeveloper.cv_builder.services.ExperienciaService;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/v1/experiencias")
@@ -22,12 +24,12 @@ public class ExperienciaController {
     private ExperienciaService service;
 
     @GetMapping
-    public ResponseEntity<List<Experiencia>> listar(){
-        return ResponseEntity.status(HttpStatus.OK).body(service.listar());
+    public ResponseEntity<List<ExperienciaResponseDTO>> listar(HttpServletRequest request){
+        return ResponseEntity.status(HttpStatus.OK).body(service.listar(request));
     }
 
     @PostMapping
-    public ResponseEntity<Experiencia> criar(@RequestBody Experiencia Experiencia){
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(Experiencia));
+    public ResponseEntity<ExperienciaResponseDTO> criar(@RequestBody ExperienciaCreateDTO dto, HttpServletRequest request){
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(dto, request));
     }
 }

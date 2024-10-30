@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -69,5 +68,9 @@ public class Curso implements Serializable{
         this.descricao = dto.getDescricao();
         this.tecnologias = dto.getTecnologias();
         this.status = dto.getStatus();
+    }
+
+    public void defineUsuario(Usuario usuario){
+        this.usuario = usuario;
     }
 }

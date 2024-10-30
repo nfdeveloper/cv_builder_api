@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import io.github.nfdeveloper.cv_builder.application.dtos.curriculo.CurriculoCreateDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -69,4 +70,26 @@ public class Curriculo implements Serializable{
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    public Curriculo(CurriculoCreateDTO dto){
+        this.id = dto.getId();
+        this.nome = dto.getNome();
+        this.titulo = dto.getTitulo();
+        this.subTitulo = dto.getSubTitulo();
+        this.dataCurriculo = dto.getDataCurriculo();
+        this.resumo = dto.getResumo();
+        this.competenciasTecnicas = dto.getCompetenciasTecnicas();
+    }
+
+    public void defineCursos(List<Curso> cursos){
+        this.cursos = cursos;
+    }
+
+    public void defineExperiencias(List<Experiencia> experiencias){
+        this.experiencias = experiencias;
+    }
+
+    public void defineUsuario(Usuario usuario){
+        this.usuario = usuario;
+    }
 }

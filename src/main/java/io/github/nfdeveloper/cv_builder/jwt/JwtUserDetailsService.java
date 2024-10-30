@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import io.github.nfdeveloper.cv_builder.entities.enums.Role;
 import io.github.nfdeveloper.cv_builder.entities.models.Usuario;
 import io.github.nfdeveloper.cv_builder.services.UsuarioService;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService{
@@ -27,5 +28,10 @@ public class JwtUserDetailsService implements UserDetailsService{
         String token =  JwtUtils.createToken(username, role.name()); 
         return new JwtToken(token, username, role.name());
     }
+
+    public Usuario getUsuarioByToken(HttpServletRequest request){
+        String token = request.getHeader(JwtUtils.JWT_AUTHORIZATION);
+        return service.buscarPorUsername(JwtUtils.getUsernameFromToken(token));
+    } 
 
 }

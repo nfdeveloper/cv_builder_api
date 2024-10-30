@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -69,5 +68,9 @@ public class Experiencia implements Serializable{
         this.descricao = dto.getDescricao();
         this.empregoAtual = dto.getDataFim() != null ? false : true;
         this.status = dto.getStatus();
+    }
+
+    public void defineUsuario(Usuario usuario){
+        this.usuario = usuario;
     }
 }
