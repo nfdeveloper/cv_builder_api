@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import io.github.nfdeveloper.cv_builder.entities.models.Curriculo;
+import io.github.nfdeveloper.cv_builder.entities.models.Formacao;
 import io.github.nfdeveloper.cv_builder.entities.models.Usuario;
 
-public interface CurriculoRepository extends JpaRepository<Curriculo, Long>{
+public interface FormacaoRepository extends JpaRepository<Formacao, Long>{
 
-    List<Curriculo> findByUsuario(Usuario usuario);
+    List<Formacao> findByUsuario(Usuario usuario);
 }
