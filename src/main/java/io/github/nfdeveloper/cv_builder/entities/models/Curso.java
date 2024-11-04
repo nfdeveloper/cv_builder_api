@@ -71,6 +71,7 @@ public class Curso implements Serializable{
         this.descricao = dto.getDescricao();
         this.tecnologias = dto.getTecnologias();
         this.status = dto.getStatus();
+        this.situacao = dto.getSituacao();
     }
 
     public void defineUsuario(Usuario usuario){

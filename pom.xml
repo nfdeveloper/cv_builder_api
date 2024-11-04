@@ -103,6 +103,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>cv-builder-api</finalName>
 	</build>
 
 </project>

@@ -2,6 +2,7 @@ package io.github.nfdeveloper.cv_builder.application.dtos.cursos;
 
 import io.github.nfdeveloper.cv_builder.config.CustomLocalDateTimeDeserializer;
 import io.github.nfdeveloper.cv_builder.entities.enums.Status;
+import io.github.nfdeveloper.cv_builder.entities.enums.StatusCurso;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,4 +29,5 @@ public class CursoCreateDTO {
     private String descricao;
     private String tecnologias;
     private Status status = Status.ATIVO;
+    private StatusCurso situacao;
 }

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import io.github.nfdeveloper.cv_builder.config.CustomLocalDateTimeDeserializer;
+import io.github.nfdeveloper.cv_builder.entities.enums.StatusCurso;
 import io.github.nfdeveloper.cv_builder.entities.models.Curso;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class CursoResponseDTO {
     private String descricao;
     private String tecnologias;
     private String status;
+    private String situacao;
 
     public CursoResponseDTO(Curso curso){
         this.id = curso.getId();
@@ -38,5 +40,6 @@ public class CursoResponseDTO {
         this.descricao = curso.getDescricao();
         this.tecnologias = curso.getTecnologias();
         this.status = curso.getStatus().name();
+        this.situacao = curso.getSituacao().name();
     }
 }
