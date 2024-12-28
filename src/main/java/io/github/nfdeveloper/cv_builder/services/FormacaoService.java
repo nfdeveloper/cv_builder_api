@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import io.github.nfdeveloper.cv_builder.application.dtos.formacoes.FormacaoCreateDTO;
 import io.github.nfdeveloper.cv_builder.application.dtos.formacoes.FormacaoResponseDTO;
+import io.github.nfdeveloper.cv_builder.entities.enums.Status;
 import io.github.nfdeveloper.cv_builder.entities.models.Formacao;
 import io.github.nfdeveloper.cv_builder.entities.models.Usuario;
 import io.github.nfdeveloper.cv_builder.jwt.JwtUserDetailsService;
@@ -31,6 +32,13 @@ public class FormacaoService {
         return repository.findByUsuario(getUsuario(request))
                 .stream()
                 .map(f -> new FormacaoResponseDTO(f))
+                .toList();
+    }
+
+    public List<FormacaoResponseDTO> listarAtivos(HttpServletRequest request){
+        return repository.findByUsuarioAndStatus(getUsuario(request), Status.ATIVO)
+                .stream()
+                .map(c -> new FormacaoResponseDTO(c))
                 .toList();
     }
 

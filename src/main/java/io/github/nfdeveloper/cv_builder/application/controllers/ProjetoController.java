@@ -12,31 +12,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.nfdeveloper.cv_builder.application.dtos.experiencias.ExperienciaCreateDTO;
-import io.github.nfdeveloper.cv_builder.application.dtos.experiencias.ExperienciaResponseDTO;
-import io.github.nfdeveloper.cv_builder.services.ExperienciaService;
+import io.github.nfdeveloper.cv_builder.application.dtos.projetos.ProjetoCreateDTO;
+import io.github.nfdeveloper.cv_builder.application.dtos.projetos.ProjetoResponseDTO;
+import io.github.nfdeveloper.cv_builder.services.ProjetoService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/api/v1/experiencias")
+@RequestMapping("/api/v1/projetos")
 @CrossOrigin("*")
-public class ExperienciaController {
+public class ProjetoController {
 
     @Autowired
-    private ExperienciaService service;
+    private ProjetoService service;
 
     @GetMapping
-    public ResponseEntity<List<ExperienciaResponseDTO>> listar(HttpServletRequest request){
+    private ResponseEntity<List<ProjetoResponseDTO>> listar(HttpServletRequest request){
         return ResponseEntity.status(HttpStatus.OK).body(service.listar(request));
     }
 
-    @GetMapping("/ativos")
-    public ResponseEntity<List<ExperienciaResponseDTO>> listarAtivos(HttpServletRequest request){
-        return ResponseEntity.status(HttpStatus.OK).body(service.listarAtivos(request));
-    }
-
     @PostMapping
-    public ResponseEntity<ExperienciaResponseDTO> criar(@RequestBody ExperienciaCreateDTO dto, HttpServletRequest request){
+    public ResponseEntity<ProjetoResponseDTO> criar(@RequestBody ProjetoCreateDTO dto, HttpServletRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(dto, request));
     }
 }

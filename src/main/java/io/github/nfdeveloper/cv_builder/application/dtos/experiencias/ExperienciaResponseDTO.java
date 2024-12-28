@@ -1,7 +1,12 @@
 package io.github.nfdeveloper.cv_builder.application.dtos.experiencias;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import io.github.nfdeveloper.cv_builder.application.dtos.projetos.ProjetoResponseDTO;
+import io.github.nfdeveloper.cv_builder.config.CustomLocalDateTimeDeserializer;
 import io.github.nfdeveloper.cv_builder.entities.models.Experiencia;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,10 +24,15 @@ public class ExperienciaResponseDTO {
     private Long id;
     private String empresa;
     private String funcao;
-    private LocalDateTime dataInicio;
-    private LocalDateTime dataFim;
+    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
+    private LocalDate dataInicio;
+    private String tecnologias;
+
+    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
+    private LocalDate dataFim;
     private String descricao;
     private Boolean empregoAtual;
+    private List<ProjetoResponseDTO> projetos;
 
     private String status;
 
@@ -35,5 +45,10 @@ public class ExperienciaResponseDTO {
         this.descricao = experiencia.getDescricao();
         this.empregoAtual = experiencia.getEmpregoAtual();
         this.status = experiencia.getStatus().name();
+        this.tecnologias = experiencia.getTecnologias();
+        this.projetos = experiencia.getProjetos()
+                                   .stream()
+                                   .map(p -> new ProjetoResponseDTO(p))
+                                   .toList();
     }
 }

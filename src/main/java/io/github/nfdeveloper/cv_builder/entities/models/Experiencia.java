@@ -1,7 +1,7 @@
 package io.github.nfdeveloper.cv_builder.entities.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import io.github.nfdeveloper.cv_builder.application.dtos.experiencias.ExperienciaCreateDTO;
@@ -14,11 +14,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
@@ -39,16 +39,19 @@ public class Experiencia implements Serializable{
     private String funcao;
 
     @Column(name = "dt_inicio")
-    private LocalDateTime dataInicio;
+    private LocalDate dataInicio;
 
     @Column(name = "dt_fim")
-    private LocalDateTime dataFim;
+    private LocalDate dataFim;
 
     @Column(name = "descricao", length = 500)
     private String descricao;
 
     @Column(name = "emprego_atual")
     private Boolean empregoAtual;
+
+    @Column(name = "tecnologias", length = 500)
+    private String tecnologias;
 
     private Status status;
 
@@ -59,6 +62,9 @@ public class Experiencia implements Serializable{
     @ManyToMany(mappedBy = "experiencias")
     private List<Curriculo> curriculos;
 
+    @OneToMany(mappedBy = "experiencia")
+    private List<Projeto> projetos;
+
     public Experiencia(ExperienciaCreateDTO dto){
         this.id = dto.getId();
         this.empresa = dto.getEmpresa();
@@ -68,6 +74,7 @@ public class Experiencia implements Serializable{
         this.descricao = dto.getDescricao();
         this.empregoAtual = dto.getDataFim() != null ? false : true;
         this.status = dto.getStatus();
+        this.tecnologias = dto.getTecnologias();
     }
 
     public void defineUsuario(Usuario usuario){

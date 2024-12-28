@@ -47,6 +47,10 @@ public class Usuario implements Serializable{
     
     private Status status;
 
+    private String gitHub;
+
+    private String linkedin;
+
     @Embedded
 	private Endereco endereco;
 

@@ -1,5 +1,6 @@
 package io.github.nfdeveloper.cv_builder.application.dtos.cursos;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -25,7 +26,7 @@ public class CursoResponseDTO {
     private Double cargaHoraria;
 
     @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-    private LocalDateTime dtTermino;
+    private LocalDate dtTermino;
     private String descricao;
     private String tecnologias;
     private String status;

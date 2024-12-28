@@ -5,10 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.github.nfdeveloper.cv_builder.application.dtos.curriculo.CurriculoCreateDTO;
 import io.github.nfdeveloper.cv_builder.application.dtos.curriculo.CurriculoResponseDTO;
@@ -17,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/v1/curriculos")
+@CrossOrigin("*")
 public class CurriculoController {
 
     @Autowired
@@ -28,7 +26,7 @@ public class CurriculoController {
     }
 
     @PostMapping
-    public ResponseEntity<CurriculoResponseDTO> criar(CurriculoCreateDTO dto, HttpServletRequest request) {
+    public ResponseEntity<CurriculoResponseDTO> criar(@RequestBody CurriculoCreateDTO dto, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(dto, request));
     }
 }

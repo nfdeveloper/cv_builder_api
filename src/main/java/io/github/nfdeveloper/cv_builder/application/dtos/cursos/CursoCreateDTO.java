@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -24,8 +25,7 @@ public class CursoCreateDTO {
     private String instituicao;
     private Double cargaHoraria;
 
-    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-    private LocalDateTime dtTermino;
+    private LocalDate dtTermino;
     private String descricao;
     private String tecnologias;
     private Status status = Status.ATIVO;

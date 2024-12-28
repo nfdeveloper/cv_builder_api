@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/v1/formacoes")
+@CrossOrigin("*")
 public class FormacaoController {
 
     @Autowired
@@ -26,6 +28,11 @@ public class FormacaoController {
     @GetMapping
     public ResponseEntity<List<FormacaoResponseDTO>> listar(HttpServletRequest request){
         return ResponseEntity.status(HttpStatus.OK).body(service.list(request));
+    }
+
+    @GetMapping("/ativos")
+    public ResponseEntity<List<FormacaoResponseDTO>> listarAtivos(HttpServletRequest request){
+        return ResponseEntity.status(HttpStatus.OK).body(service.listarAtivos(request));
     }
 
     @PostMapping

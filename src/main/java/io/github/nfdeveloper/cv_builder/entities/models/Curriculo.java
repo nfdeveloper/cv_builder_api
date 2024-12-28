@@ -1,7 +1,7 @@
 package io.github.nfdeveloper.cv_builder.entities.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import io.github.nfdeveloper.cv_builder.application.dtos.curriculo.CurriculoCreateDTO;
@@ -43,7 +43,7 @@ public class Curriculo implements Serializable{
     private String subTitulo;
 
     @Column(name = "dtCurriculo")
-    private LocalDateTime dataCurriculo;
+    private LocalDate dataCurriculo;
 
     @Column(name = "resumo", length = 1000)
     private String resumo;

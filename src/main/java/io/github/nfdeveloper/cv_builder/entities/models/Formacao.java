@@ -1,9 +1,11 @@
 package io.github.nfdeveloper.cv_builder.entities.models;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import io.github.nfdeveloper.cv_builder.application.dtos.formacoes.FormacaoCreateDTO;
+import io.github.nfdeveloper.cv_builder.entities.enums.Status;
 import io.github.nfdeveloper.cv_builder.entities.enums.StatusCurso;
 import io.github.nfdeveloper.cv_builder.entities.enums.TipoFormacao;
 import jakarta.persistence.Column;
@@ -22,7 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_courses")
+@Table(name = "tb_formations")
 public class Formacao implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -34,12 +36,13 @@ public class Formacao implements Serializable{
     private String titulo;
     private TipoFormacao tipo;
     private StatusCurso situacao;
+    private Status status;
 
     @Column(name = "previsao_termino")
-    private LocalDateTime previsaoTermino;
+    private LocalDate previsaoTermino;
 
     @Column(name = "data_conclusao")
-    private LocalDateTime dataConclusao;
+    private LocalDate dataConclusao;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -52,6 +55,7 @@ public class Formacao implements Serializable{
         this.tipo = dto.getTipo();
         this.dataConclusao = dto.getDataConclusao();
         this.previsaoTermino = dto.getPrevisaoTermino();
+        this.status = dto.getStatus() != null ? dto.getStatus() : Status.ATIVO;
     }
 
     public void defineUsuario(Usuario usuario){

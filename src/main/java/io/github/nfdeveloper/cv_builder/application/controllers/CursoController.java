@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/v1/cursos")
+@CrossOrigin("*")
 public class CursoController {
 
     @Autowired
@@ -26,6 +28,11 @@ public class CursoController {
     @GetMapping
     public ResponseEntity<List<CursoResponseDTO>> listar(HttpServletRequest request){
         return ResponseEntity.status(HttpStatus.OK).body(service.listar(request));
+    }
+
+    @GetMapping("/ativos")
+    public ResponseEntity<List<CursoResponseDTO>> listarAtivos(HttpServletRequest request){
+        return ResponseEntity.status(HttpStatus.OK).body(service.listarAtivos(request));
     }
 
     @PostMapping

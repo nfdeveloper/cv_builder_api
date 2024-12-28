@@ -1,11 +1,8 @@
 package io.github.nfdeveloper.cv_builder.application.dtos.curriculo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import io.github.nfdeveloper.cv_builder.config.CustomLocalDateTimeDeserializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,9 +20,7 @@ public class CurriculoCreateDTO {
     private String nome;
     private String titulo;
     private String subTitulo;
-
-    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-    private LocalDateTime dataCurriculo;
+    private LocalDate dataCurriculo = LocalDate.now();
     private String resumo;
     private String competenciasTecnicas;
     private List<Long> experiencias;

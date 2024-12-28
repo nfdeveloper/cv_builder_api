@@ -34,4 +34,8 @@ public class JwtUserDetailsService implements UserDetailsService{
         return service.buscarPorUsername(JwtUtils.getUsernameFromToken(token));
     } 
 
+    public boolean verificaTokenValido(HttpServletRequest request){
+        String token = request.getHeader(JwtUtils.JWT_AUTHORIZATION);
+        return JwtUtils.isTokenValid(token);
+    }
 }

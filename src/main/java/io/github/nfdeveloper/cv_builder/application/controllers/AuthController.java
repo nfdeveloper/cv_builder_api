@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +20,11 @@ import io.github.nfdeveloper.cv_builder.jwt.JwtUserDetailsService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/auth")
+@CrossOrigin("*")
 public class AuthController {
 
     @Autowired
@@ -48,4 +52,10 @@ public class AuthController {
                 .badRequest()
                 .body(new ErrorMessage(request, HttpStatus.BAD_REQUEST, "Credenciais inválidas"));
     }
+
+    @GetMapping("/verifica-token")
+    public boolean getMethodName(HttpServletRequest request) {
+        return detailsService.verificaTokenValido(request);
+    }
+    
 }

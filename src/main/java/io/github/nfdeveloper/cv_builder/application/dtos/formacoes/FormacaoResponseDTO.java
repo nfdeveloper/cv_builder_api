@@ -1,10 +1,8 @@
 package io.github.nfdeveloper.cv_builder.application.dtos.formacoes;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
-import io.github.nfdeveloper.cv_builder.config.CustomLocalDateTimeDeserializer;
+import io.github.nfdeveloper.cv_builder.entities.enums.Status;
 import io.github.nfdeveloper.cv_builder.entities.models.Formacao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,12 +20,9 @@ public class FormacaoResponseDTO {
     private String titulo;
     private String tipo;
     private String situacao;
-
-    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-    private LocalDateTime previsaoTermino;
-
-    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-    private LocalDateTime dataConclusao;
+    private Status status;
+    private LocalDate previsaoTermino;
+    private LocalDate dataConclusao;
 
     public FormacaoResponseDTO(Formacao formacao){
         this.id = formacao.getId();
@@ -36,5 +31,6 @@ public class FormacaoResponseDTO {
         this.situacao = formacao.getSituacao().name();
         this.previsaoTermino = formacao.getPrevisaoTermino();
         this.dataConclusao = formacao.getDataConclusao();
+        this.status = formacao.getStatus();
     }
 }

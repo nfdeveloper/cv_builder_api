@@ -1,6 +1,6 @@
 package io.github.nfdeveloper.cv_builder.application.dtos.curriculo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -25,9 +25,7 @@ public class CurriculoResponseDTO {
     private String nome;
     private String titulo;
     private String subTitulo;
-
-    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-    private LocalDateTime dataCurriculo;
+    private LocalDate dataCurriculo;
     private String resumo;
     private String competenciasTecnicas;
     private List<ExperienciaResponseDTO> experiencias;

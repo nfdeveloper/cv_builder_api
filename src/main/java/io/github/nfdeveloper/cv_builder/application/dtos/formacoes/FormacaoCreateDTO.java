@@ -1,10 +1,12 @@
 package io.github.nfdeveloper.cv_builder.application.dtos.formacoes;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import io.github.nfdeveloper.cv_builder.config.CustomLocalDateTimeDeserializer;
+import io.github.nfdeveloper.cv_builder.entities.enums.Status;
 import io.github.nfdeveloper.cv_builder.entities.enums.StatusCurso;
 import io.github.nfdeveloper.cv_builder.entities.enums.TipoFormacao;
 import lombok.AllArgsConstructor;
@@ -24,10 +26,7 @@ public class FormacaoCreateDTO {
     private String titulo;
     private TipoFormacao tipo;
     private StatusCurso situacao;
-
-    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-    private LocalDateTime previsaoTermino;
-
-    @JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
-    private LocalDateTime dataConclusao;
+    private Status status;
+    private LocalDate previsaoTermino;
+    private LocalDate dataConclusao;
 }
