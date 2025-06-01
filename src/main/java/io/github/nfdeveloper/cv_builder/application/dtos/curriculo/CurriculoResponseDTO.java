@@ -3,11 +3,8 @@ package io.github.nfdeveloper.cv_builder.application.dtos.curriculo;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import io.github.nfdeveloper.cv_builder.application.dtos.cursos.CursoResponseDTO;
 import io.github.nfdeveloper.cv_builder.application.dtos.experiencias.ExperienciaResponseDTO;
-import io.github.nfdeveloper.cv_builder.config.CustomLocalDateTimeDeserializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
